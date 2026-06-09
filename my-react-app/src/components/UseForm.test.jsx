@@ -1,6 +1,8 @@
+import "@testing-library/jest-dom/vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import UserForm from "./UserForm";
+import { describe, expect, test, vi } from "vitest";
+import UserForm from "./UseForm";
 
 describe("UserForm", () => {
   test("renders all form fields and buttons", () => {
@@ -81,8 +83,11 @@ describe("UserForm", () => {
   test("submits successfully with valid data", async () => {
     const user = userEvent.setup();
 
-    const consoleSpy = jest
+    const consoleSpy = vi
       .spyOn(console, "log")
+      .mockImplementation(() => {});
+    const alertSpy = vi
+      .spyOn(window, "alert")
       .mockImplementation(() => {});
 
     render(<UserForm />);
@@ -116,6 +121,7 @@ describe("UserForm", () => {
     );
 
     consoleSpy.mockRestore();
+    alertSpy.mockRestore();
   });
 });
 
