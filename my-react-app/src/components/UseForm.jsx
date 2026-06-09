@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import "./UseForm.css";
 
 function UserForm() {
   const {
@@ -14,35 +15,33 @@ function UserForm() {
   };
 
   return (
-    <div style={{ maxWidth: "400px", margin: "20px auto" }}>
-      <h2>User Registration Form</h2>
+    <div className="user-form-container">
+      <h2 className="form-title">User Registration Form</h2>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form className="user-form" onSubmit={handleSubmit(onSubmit)}>
         {/* Name */}
-        <div style={{ marginBottom: "15px" }}>
+        <div className="form-group">
           <label htmlFor="name">Name:</label>
-          <br />
           <input
             id="name"
             type="text"
+            className="form-input"
             {...register("name", {
               required: "Name is required",
             })}
           />
           {errors.name && (
-            <p style={{ color: "red" }}>
-              {errors.name.message}
-            </p>
+            <p className="error">{errors.name.message}</p>
           )}
         </div>
 
         {/* Email */}
-        <div style={{ marginBottom: "15px" }}>
+        <div className="form-group">
           <label htmlFor="email">Email:</label>
-          <br />
           <input
             id="email"
             type="email"
+            className="form-input"
             {...register("email", {
               required: "Email is required",
               pattern: {
@@ -52,19 +51,17 @@ function UserForm() {
             })}
           />
           {errors.email && (
-            <p style={{ color: "red" }}>
-              {errors.email.message}
-            </p>
+            <p className="error">{errors.email.message}</p>
           )}
         </div>
 
         {/* Age */}
-        <div style={{ marginBottom: "15px" }}>
+        <div className="form-group">
           <label htmlFor="age">Age:</label>
-          <br />
           <input
             id="age"
             type="number"
+            className="form-input"
             {...register("age", {
               required: "Age is required",
               valueAsNumber: true,
@@ -79,16 +76,16 @@ function UserForm() {
             })}
           />
           {errors.age && (
-            <p style={{ color: "red" }}>
-              {errors.age.message}
-            </p>
+            <p className="error">{errors.age.message}</p>
           )}
         </div>
 
-        <button type="submit">Submit</button>
-        <button type="button" onClick={() => reset()}>
-          Reset
-        </button>
+        <div className="form-actions">
+          <button type="submit" className="btn btn-primary">Submit</button>
+          <button type="button" className="btn btn-secondary" onClick={() => reset()}>
+            Reset
+          </button>
+        </div>
       </form>
     </div>
   );
