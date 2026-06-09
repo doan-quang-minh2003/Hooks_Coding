@@ -1,4 +1,12 @@
-# Logs
+.DS_Store
+node_modules/
+dist/
+build/
+.env
+.vite
+*.log
+/.idea
+.vscode/# Logs
 logs
 *.log
 npm-debug.log*
